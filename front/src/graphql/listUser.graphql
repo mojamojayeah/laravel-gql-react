@@ -1,0 +1,16 @@
+query listUser {
+  users {
+    data {
+      name
+      id
+      email
+    }
+    paginatorInfo {
+      currentPage
+      count
+      lastPage
+      total
+    }
+    __typename
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "plugin:team-vals/recommended",
+    "plugin:team-vals/react",
+    "plugin:team-vals/tailwindcss",
+    "plugin:team-vals/prettier"
+  ],
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./"
+  },
+  "ignorePatterns": [
+    "postcss.config.js",
+    "tailwind.config.js",
+    "src/generate/generated.ts"
+  ]
+}

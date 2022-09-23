@@ -1,0 +1,15 @@
+schema: 'http://localhost:8000/graphql'
+documents: ['./src/graphql/*.graphql', './src/**/*.ts']
+generates:
+  ./src/generate/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      # - typed-document-node //hook作ろうね
+      - typescript-react-query
+    config:
+      fetcher:
+        endpoint: 'http://localhost:8000/graphql'
+        fetchParams:
+          headers:
+            Content-Type: application/json
