@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { useCallback, useState } from 'react'
 import { useCreateUserMutation, useListUserQuery } from './generate/generated'
 
@@ -23,9 +24,16 @@ const App = () => {
     },
     [],
   )
+  const queryClient = useQueryClient()
   // const { status, data, error, isFetching } = useUser() //下と同じ
-  const { data: listUsers } = useListUserQuery()
-  const { data: createUsers, mutate } = useCreateUserMutation()
+  const { data: listUsers } = useListUserQuery() //refetchもらえる
+  const { data: createUsers, mutate } = useCreateUserMutation({
+    onSuccess: async () => {
+      // refetch() //強制で行う
+      // await queryClient.refetchQueries(['listUser']) //上と同じ
+      await queryClient.invalidateQueries(['listUser']) //queryしてたらrefetchしてなきゃ、後回し
+    },
+  })
 
   const createUser = useCallback(() => {
     mutate({

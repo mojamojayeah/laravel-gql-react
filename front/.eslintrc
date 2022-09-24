@@ -13,5 +13,13 @@
     "postcss.config.js",
     "tailwind.config.js",
     "src/generate/generated.ts"
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ]
+  }
 }
